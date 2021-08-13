@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Lista de Tarefas</h1>
+
+    {% for tarefa in tarefas %}
+        {% if tarefa.prioridade == 'A' %}
+            <div class="card" style="border-color: red">
+        {% elif tarefa.prioridade == 'M' %}
+            <div class="card" style="border-color: yellow">
+        {% else %}
+            <div class="card" style="border-color: green">
+        {% endif %}
+          <div class="card-header">{{tarefa.nome}}</div>
+          <div class="card-body">{{tarefa.descricao}}</div>
+          <div class="card-footer"><a href="{% url 'Alterar_Tarefa' tarefa.id %}">Alterar</a> | <a href="{% url 'Deletar_Tarefa' tarefa.id %}">Concluido</a></div>
+        </div>
+        <br>
+    {% endfor %}
+
+{% endblock content%}

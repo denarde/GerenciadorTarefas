@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h2>Favor efetuar o login</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {% for message in messages %}
+            <div class="alert alert-danger">
+              {{message}}
+            </div>
+        {% endfor %}
+        {{user_form | crispy}}
+        <button type="submit" class="btn btn-primary">Logar</button>
+        <a href="{% url 'Cadastrar_Usuario' %}" class="btn btn-secondary">Cadastrar Usuario</a>
+    </form>
+
+
+{% endblock%}
